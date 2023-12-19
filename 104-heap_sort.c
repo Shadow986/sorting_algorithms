@@ -23,6 +23,7 @@ void heapify(int *array, size_t size, size_t root, size_t max)
 	if (largest != root)
 	{
 		int temp = array[root];
+
 		array[root] = array[largest];
 		array[largest] = temp;
 		print_array(array, size);
@@ -49,10 +50,11 @@ void heap_sort(int *array, size_t size)
 	for (i = size - 1; i > 0; i--)
 		{
 			int temp = array[0];
+			
 			array[0] = array[i];
 			array[i] = temp;
 
 			print_array(array, size);
 			heapify(array, size, 0, i);
-    }
+		}
 }
