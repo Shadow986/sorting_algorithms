@@ -1,64 +1,58 @@
 #include "sort.h"
 
 /**
- * sift_down - Sifts down a node in a heap
- * @array: The array representing the heap
- * @size: Number of elements in @array
- * @root: Index of the root of the subtree
- * @end: Index of the end of the heap
+ * heapify - a function that rearranges the elements in a max heap
+ * @array: The array to be sorted
+ * @size: The size of the array
+ * @root: The root index of the subtree
+ * @max: The maximum index of the subtree
  */
-void sift_down(int *array, size_t size, size_t root, size_t end)
+void heapify(int *array, size_t size, size_t root, size_t max)
 {
-	size_t max = root;
-	size_t left = 2 * root + 1;
-	size_t right = 2 * root + 2;
 
-	if (left < end && array[left] > array[max])
-		max = left;
-	if (right < end && array[right] > array[max])
-		max = right;
-	if (max != root)
+	size_t largest, left, right;
+
+	largest = root;
+	left = 2 * root + 1;
+	right = 2 * root + 2;
+
+	if (left < max && array[left] > array[largest])
+		largest = left;
+	if (right < max && array[right] > array[largest])
+		largest = right;
+	if (largest != root)
 	{
 		int temp = array[root];
-		array[root] = array[max];
-		array[max] = temp;
+		array[root] = array[largest];
+		array[largest] = temp;
 		print_array(array, size);
-		sift_down(array, size, max, end);
+		heapify(array, size, largest, max);
 	}
 }
 
 /**
- * heapify - Converts an array into a heap
- * @array: The array to be converted
- * @size: Number of elements in @array
- */
-void heapify(int *array, size_t size)
-{
-	size_t i;
-
-	for (i = size / 2; i > 0; i--)
-		sift_down(array, size, i - 1, size);
-}
-
-/**
- * heap_sort - Sorts an array of integers in ascending order
- * using the Heap sort algorithm
+ * heap_sort - a function that sorts an array of integers in ascending
+ * order using the Heap sort algorithm
  * @array: The array to be sorted
- * @size: Number of elements in @array
+ * @size: The size of the array
  */
 void heap_sort(int *array, size_t size)
 {
 	size_t i;
 
-	heapify(array, size);
+	if (array == NULL || size < 2)
+		return;
+
+	for (i = size / 2; i > 0; i--)
+		heapify(array, size, i - 1, size);
 
 	for (i = size - 1; i > 0; i--)
-	{
-		int temp = array[0];
-		array[0] = array[i];
-		array[i] = temp;
-		print_array(array, size);
+		{
+			int temp = array[0];
+			array[0] = array[i];
+			array[i] = temp;
 
-		sift_down(array, size, 0, i);
-	}
+			print_array(array, size);
+			heapify(array, size, 0, i);
+    }
 }
