@@ -11,7 +11,7 @@
  */
 void bitonic_merge(int *array, size_t size, size_t start, size_t count, int dir)
 {
-	size_t k, i, j;
+	size_t k;
 	int temp;
 
 	if (count > 1)
