@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <stddef.h>
 
 /* Data Structure and Functions */
 
@@ -34,8 +35,13 @@ void cocktail_sort_list(listint_t **list);
 void counting_sort(int *array, size_t size);
 void quicksort(int *array, int low, int high, size_t size);
 void quick_sort(int *array, size_t size);
+
+/* prototypes from task 7 */
+
+void merge(int *array, int *temp, int left, int mid, int right);
+void merge_sort_recursive(int *array, int *temp, int left, int right);
 void merge_sort(int *array, size_t size);
-void merge(int *array, int *left, int *right, int left_size, int right_size);
+
 
 
 #endif
