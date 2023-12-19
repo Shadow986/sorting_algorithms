@@ -36,12 +36,18 @@ void counting_sort(int *array, size_t size);
 void quicksort(int *array, int low, int high, size_t size);
 void quick_sort(int *array, size_t size);
 
-/* prototypes from task 7 */
+/* prototypes from task 7-12 */
 
 void merge(int *array, int *temp, int left, int mid, int right);
 void merge_sort_recursive(int *array, int *temp, int left, int right);
 void merge_sort(int *array, size_t size);
-
-
+void heapify(int *array, size_t size, size_t root, size_t max);
+void heap_sort(int *array, size_t size);
+int get_max(int *array, size_t size);
+void count_sort(int *array, size_t size, int exp);
+void radix_sort(int *array, size_t size);
+void bitonic_merge(int *array, size_t size, size_t start, size_t count, int dir);
+void bitonic_sort_recursive(int *array, size_t size, size_t start, size_t count, int dir);
+void bitonic_sort(int *array, size_t size);
 
 #endif
